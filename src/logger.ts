@@ -5,7 +5,7 @@ class LoggerService {
  private lastTimestamp: number;
  private showDelta: boolean;
 
- constructor(appName = 'App', showDelta = false) {
+ constructor(appName = 'Logger', showDelta = false) {
   this.appName = appName;
   this.lastTimestamp = Date.now();
   this.showDelta = showDelta;
@@ -45,42 +45,42 @@ class LoggerService {
   return `+${delta}ms`;
  }
 
- log(message: string, context = 'Server') {
-  this.printMessage('log', message, context);
+ log(message: string, context = 'Server', showDelta?: boolean) {
+  this.printMessage('log', message, context, showDelta);
  }
 
- error(message: string, context = 'Server') {
-  this.printMessage('error', message, context);
+ error(message: string, context = 'Server', showDelta?: boolean) {
+  this.printMessage('error', message, context, showDelta);
  }
 
- warn(message: string, context = 'Server') {
-  this.printMessage('warn', message, context);
+ warn(message: string, context = 'Server', showDelta?: boolean) {
+  this.printMessage('warn', message, context, showDelta);
  }
 
- debug(message: string, context = 'Server') {
-  this.printMessage('debug', message, context);
+ debug(message: string, context = 'Server', showDelta?: boolean) {
+  this.printMessage('debug', message, context, showDelta);
  }
 
- verbose(message: string, context = 'Server') {
-  this.printMessage('verbose', message, context);
+ verbose(message: string, context = 'Server', showDelta?: boolean) {
+  this.printMessage('verbose', message, context, showDelta);
  }
 
- info(message: string, context = 'Server') {
-  this.printMessage('info', message, context);
+ info(message: string, context = 'Server', showDelta?: boolean) {
+  this.printMessage('info', message, context, showDelta);
  }
 
- fatal(message: string, context = 'Server') {
-  this.printMessage('fatal', message, context);
+ fatal(message: string, context = 'Server', showDelta?: boolean) {
+  this.printMessage('fatal', message, context, showDelta);
  }
 
- private async printMessage(level: LogLevel, message: string, context: string) {
+ private async printMessage(level: LogLevel, message: string, context: string, showDelta = this.showDelta) {
   const chalk = (await import('chalk')).default;
 
   const pid = process.pid;
   const timestamp = this.getTimestamp();
   const coloredLevel = await this.colorByLevel(level, level.toUpperCase());
   const coloredMessage = await this.colorByLevel(level, message);
-  const delta = this.showDelta ? this.formatDelta() : '';
+  const delta = showDelta ? this.formatDelta() : '';
 
   const coloredAppName = await this.colorByLevel(level, `[${this.appName}]`);
   const coloredPid = await this.colorByLevel(level, `${pid}`);

@@ -1,5 +1,5 @@
 class LoggerService {
-  constructor(appName = 'App', showDelta = false) {
+  constructor(appName = 'Logger', showDelta = false) {
     this.appName = appName;
     this.lastTimestamp = Date.now();
     this.showDelta = showDelta;
@@ -39,45 +39,45 @@ class LoggerService {
     return `+${delta}ms`;
   }
 
-  log(message, context = 'Server') {
-    this.printMessage('log', message, context);
+  log(message, context = 'Server', showDelta) {
+    this.printMessage('log', message, context, showDelta);
   }
 
-  error(message, context = 'Server') {
-    this.printMessage('error', message, context);
+  error(message, context = 'Server', showDelta) {
+    this.printMessage('error', message, context, showDelta);
   }
 
-  warn(message, context = 'Server') {
-    this.printMessage('warn', message, context);
+  warn(message, context = 'Server', showDelta) {
+    this.printMessage('warn', message, context, showDelta);
   }
 
-  debug(message, context = 'Server') {
-    this.printMessage('debug', message, context);
+  debug(message, context = 'Server', showDelta) {
+    this.printMessage('debug', message, context, showDelta);
   }
 
-  verbose(message, context = 'Server') {
-    this.printMessage('verbose', message, context);
+  verbose(message, context = 'Server', showDelta) {
+    this.printMessage('verbose', message, context, showDelta);
   }
 
-  info(message, context = 'Server') {
-    this.printMessage('info', message, context);
+  info(message, context = 'Server', showDelta) {
+    this.printMessage('info', message, context, showDelta);
   }
 
-  fatal(message, context = 'Server') {
-    this.printMessage('fatal', message, context);
+  fatal(message, context = 'Server', showDelta) {
+    this.printMessage('fatal', message, context, showDelta);
   }
 
-  async printMessage(level, message, context) {
+  async printMessage(level, message, context, showDelta = this.showDelta) {
     const chalk = (await import('chalk')).default;
 
     const pid = process.pid;
     const timestamp = this.getTimestamp();
     const coloredLevel = await this.colorByLevel(level, level.toUpperCase());
     const coloredMessage = await this.colorByLevel(level, message);
-    const delta = this.showDelta ? this.formatDelta() : '';
+    const delta = showDelta ? this.formatDelta() : '';
 
     const coloredAppName = await this.colorByLevel(level, `[${this.appName}]`);
-    const coloredPid = await thiscolorByLevel(level, `${pid}`);
+    const coloredPid = await this.colorByLevel(level, `${pid}`);
     const coloredTimestamp = chalk.white(timestamp);
     const coloredContext = chalk.yellow(`[${context}]`);
     const coloredDelta = delta ? chalk.yellow(delta) : '';

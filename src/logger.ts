@@ -88,7 +88,7 @@ class LoggerService {
   const coloredContext = chalk.yellow(`[${context}]`);
   const coloredDelta = delta ? chalk.yellow(delta) : '';
 
-  const formatted = `[Logger] ${coloredPid} - ${coloredTimestamp} ${coloredLevel} ${coloredContext} ${coloredAppName} ${coloredMessage} ${coloredDelta}`.trim();
+  const formatted = `${coloredAppName} ${coloredPid} - ${coloredTimestamp} ${coloredLevel} ${coloredContext} ${coloredMessage} ${coloredDelta}`.trim();
 
   console.log(formatted);
  }

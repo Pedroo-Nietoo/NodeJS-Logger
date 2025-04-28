@@ -1,0 +1,33 @@
+# Ignorar arquivos de build
+/dist
+/build
+
+# Ignorar diretórios de desenvolvimento
+/node_modules
+/tests
+/.vscode
+/.idea
+/.env
+
+# Ignorar arquivos de configuração locais
+/tsconfig.json
+/tsconfig.build.json
+/.babelrc
+/.prettierrc
+/.eslintrc.js
+/.gitignore
+/package-lock.json
+/yarn.lock
+
+# Ignorar logs
+*.log
+
+# Ignorar arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar testes de código fonte
+/src/**/*.test.ts
+/src/**/*.spec.ts
+/tests/**/*.test.ts
+/tests/**/*.spec.ts

@@ -82,13 +82,13 @@ class LoggerService {
   const coloredMessage = await this.colorByLevel(level, message);
   const delta = this.showDelta ? this.formatDelta() : '';
 
-  const coloredAppName = chalk.green(`[${this.appName}]`);
-  const coloredPid = chalk.green(`${pid}`);
+  const coloredAppName = await this.colorByLevel(level, `[${this.appName}]`);
+  const coloredPid = await this.colorByLevel(level, `${pid}`);
   const coloredTimestamp = chalk.white(timestamp);
   const coloredContext = chalk.yellow(`[${context}]`);
   const coloredDelta = delta ? chalk.yellow(delta) : '';
 
-  const formatted = `'[Logger] ${coloredPid} - ${coloredTimestamp} ${coloredLevel} ${coloredContext} ${coloredMessage} ${coloredDelta}`.trim();
+  const formatted = `[Logger] ${coloredPid} - ${coloredTimestamp} ${coloredLevel} ${coloredContext} ${coloredAppName} ${coloredMessage} ${coloredDelta}`.trim();
 
   console.log(formatted);
  }

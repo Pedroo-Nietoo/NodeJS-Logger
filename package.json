@@ -1,0 +1,25 @@
+{
+  "name": "pn-logger",
+  "version": "0.0.2",
+  "description": "Simple Node.js logger",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "keywords": [
+    "log",
+    "logger",
+    "chalk"
+  ],
+  "author": "@Pedroo-Nietoo",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "typescript": "^5.8.3"
+  }
+}

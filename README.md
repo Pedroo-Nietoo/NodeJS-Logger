@@ -9,8 +9,8 @@
 
 A simple logger for Node.js applications. This logger provides various logging levels and can be easily integrated into your Node.js projects.
 
-![image](https://raw.githubusercontent.com/Pedroo-Nietoo/NodeJS-Logger/refs/heads/main/src/assets/logger-example-dark.png?token=GHSAT0AAAAAADDHKCXDFCYOHYOIGO3VK45I2AVS23A)
-![image](https://raw.githubusercontent.com/Pedroo-Nietoo/NodeJS-Logger/refs/heads/main/src/assets/logger-example-light.png?token=GHSAT0AAAAAADDHKCXDFCYOHYOIGO3VK45I2AVS23A)
+![image](https://raw.githubusercontent.com/Pedroo-Nietoo/NodeJS-Logger/refs/heads/main/src/assets/logger-example-dark.png?token=GHSAT0AAAAAADDHKCXDGJZWJR7YGRFT7IJG2AVTFOA)
+![image](https://raw.githubusercontent.com/Pedroo-Nietoo/NodeJS-Logger/refs/heads/main/src/assets/logger-example-light.png?token=GHSAT0AAAAAADDHKCXDK4NJJ5KURFYB5S5U2AVTFWA)
 
 ## Features
 

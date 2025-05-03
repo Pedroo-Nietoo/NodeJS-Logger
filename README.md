@@ -9,7 +9,7 @@
 
 A simple logger for Node.js applications. This logger provides various logging levels and can be easily integrated into your Node.js projects.
 
-![image](./src/assets/logger-example.png)
+![image](https://github.com/Pedroo-Nietoo/Logger/blob/main/src/assets/logger-example.png?raw=true)
 
 ## Features
 
@@ -119,6 +119,7 @@ When `format: 'json'` is enabled, the log output will be in the following format
   "delta": "+10ms"
 }
 ```
+![image](https://github.com/Pedroo-Nietoo/Logger/blob/main/src/assets/logger-json-example.png?raw=true)
 
 ## License
 

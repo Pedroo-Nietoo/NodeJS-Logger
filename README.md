@@ -108,10 +108,6 @@ logger.log('🪵 Log message with delta.', 'CustomContext', true);
 
 When `format: 'json'` is enabled, the log output will be in the following format:
 
-![image](https://github.com/Pedroo-Nietoo/NodeJS-Logger/blob/main/src/assets/logger-json-example.png?raw=true)
-
-Check the output in the console:
-
 ```json
 {
   "appName": "MyApp",

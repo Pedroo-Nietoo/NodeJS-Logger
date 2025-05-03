@@ -1,21 +1,42 @@
 class LoggerService {
-  constructor(appName = 'Logger', showDelta = false) {
+  constructor(appName = 'Logger', options = {}) {
     this.appName = appName;
     this.lastTimestamp = Date.now();
-    this.showDelta = showDelta;
+
+    const {
+      format = 'text',
+      timestamp = true,
+      timeDelta = false,
+      time = true,
+      date = true,
+    } = options;
+
+    this.format = format;
+    this.showTimestamp = timestamp;
+    this.showDelta = timeDelta;
+    this.includeTime = time;
+    this.includeDate = date;
   }
 
   getTimestamp() {
     const now = new Date();
-    return now.toLocaleString('pt-BR', {
-      day: '2-digit',
-      month: '2-digit',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: true,
-    });
+
+    if (!this.includeTime && !this.includeDate) return '';
+
+    const options = {};
+    if (this.includeDate) {
+      options.day = '2-digit';
+      options.month = '2-digit';
+      options.year = 'numeric';
+    }
+    if (this.includeTime) {
+      options.hour = '2-digit';
+      options.minute = '2-digit';
+      options.second = '2-digit';
+      options.hour12 = true;
+    }
+
+    return now.toLocaleString('pt-BR', options);
   }
 
   async colorByLevel(level, message) {
@@ -67,25 +88,39 @@ class LoggerService {
     this.printMessage('fatal', message, context, showDelta);
   }
 
-  async printMessage(level, message, context, showDelta = this.showDelta) {
+  async printMessage(level, message, context, showDeltaOverride) {
     const chalk = (await import('chalk')).default;
 
     const pid = process.pid;
-    const timestamp = this.getTimestamp();
+    const timestamp = this.showTimestamp ? this.getTimestamp() : '';
+    const delta = (showDeltaOverride !== undefined ? showDeltaOverride : this.showDelta) ? this.formatDelta() : '';
+
     const coloredLevel = await this.colorByLevel(level, level.toUpperCase());
     const coloredMessage = await this.colorByLevel(level, message);
-    const delta = showDelta ? this.formatDelta() : '';
-
     const coloredAppName = await this.colorByLevel(level, `[${this.appName}]`);
     const coloredPid = await this.colorByLevel(level, `${pid}`);
     const coloredTimestamp = chalk.white(timestamp);
     const coloredContext = chalk.yellow(`[${context}]`);
     const coloredDelta = delta ? chalk.yellow(delta) : '';
 
-    const formatted = `${coloredAppName} ${coloredPid} - ${coloredTimestamp} ${coloredLevel} ${coloredContext} ${coloredMessage} ${coloredDelta}`.trim();
-
-    console.log(formatted);
+    if (this.format === 'json') {
+      console.log(JSON.stringify({
+        level,
+        message,
+        context,
+        app: this.appName,
+        timestamp,
+        pid,
+        delta,
+      }));
+    } else {
+      const formatted = `${coloredAppName} ${coloredPid} - ${coloredTimestamp} ${coloredLevel} ${coloredContext} ${coloredMessage} ${coloredDelta}`.trim();
+      console.log(formatted);
+    }
   }
 }
 
-module.exports = { logger: new LoggerService() };
+module.exports = {
+  logger: new LoggerService(),
+  LoggerService,
+};

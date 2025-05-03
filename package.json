@@ -9,8 +9,10 @@
     "prepare": "npm run build"
   },
   "keywords": [
-    "log",
     "logger",
+    "log",
+    "nodejs logger",
+    "nodejs",
     "chalk"
   ],
   "author": "@Pedroo-Nietoo",

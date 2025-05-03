@@ -1,3 +1,4 @@
+
 # Node.js Logger
 
 ![npm](https://img.shields.io/npm/v/pn-logger.svg)
@@ -9,7 +10,6 @@
 A simple logger for Node.js applications. This logger provides various logging levels and can be easily integrated into your Node.js projects.
 
 ![image](./src/assets/logger-example.png)
-
 
 ## Features
 
@@ -51,7 +51,7 @@ import { logger } from 'pn-logger';
 logger.warn('⚠️ Oh no! Something went wrong.');
 ```
 
-## Configuration
+## Basic Configuration
 
 You can configure the logger by passing options to the `logger` function. The available options are:
 
@@ -66,7 +66,7 @@ You can configure the logger by passing options to the `logger` function. The av
 
 The logger will automatically format the log messages based on the provided options. The configuration is optional, and if not provided, the logger will use the default options.
 
-## Example
+### Example:
 
 ```javascript
 import { logger } from 'pn-logger';
@@ -81,3 +81,45 @@ const loggerConfig = {
 
 logger.log('🪵 This is a simple log message.');
 ```
+
+## Advanced Configuration
+
+The logger can also be configured programmatically using the `LoggerService` class:
+
+```typescript
+import { LoggerService } from 'pn-logger';
+
+const logger = new LoggerService('MyApp', true);
+logger.info('Custom logger message with delta.');
+```
+
+You can also enable logging of the time delta by passing the `showDelta` parameter:
+
+```typescript
+logger.log('🪵 Log message with delta.', 'CustomContext', true);
+```
+
+## Configuration Options
+
+- `appName`: Custom application name (default: `Logger`).
+- `showDelta`: Whether to show the time difference between log messages (default: `false`).
+
+## JSON Output Example
+
+When `format: 'json'` is enabled, the log output will be in the following format:
+
+```json
+{
+  "appName": "MyApp",
+  "pid": 12345,
+  "timestamp": "2025-05-02 14:30:00",
+  "level": "info",
+  "context": "CustomContext",
+  "message": "This is a JSON log message",
+  "delta": "+10ms"
+}
+```
+
+## License
+
+MIT License. See the [LICENSE](./LICENSE) file for more details.

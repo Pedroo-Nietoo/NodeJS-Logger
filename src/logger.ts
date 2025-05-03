@@ -131,3 +131,7 @@ class LoggerService {
   this.printMessage('fatal', message, context);
  }
 }
+
+const logger = new LoggerService();
+
+export { LoggerService, logger };

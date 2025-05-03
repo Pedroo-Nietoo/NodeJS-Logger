@@ -1,2 +1,2 @@
-import { logger } from './logger';
-export { logger };
+import { logger, LoggerService } from './logger';
+export { logger, LoggerService };
